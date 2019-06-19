@@ -20,3 +20,16 @@ class ATMTests(TestCase):
 
         self.assertEqual(atm.notes, self.notes)
         self.assertEqual(atm.amount, self.amount)
+
+        atm.set_note(2, 10)
+
+        self.assertEqual(atm.notes[2], 10)
+        self.assertEqual(atm.amount, self.amount - (2 * 20))
+
+    def test_update_amount(self):
+        atm = ATM()
+
+        atm.notes = self.notes
+        atm.update_amount()
+
+        self.assertEqual(atm.amount, self.amount)
