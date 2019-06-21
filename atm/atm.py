@@ -36,11 +36,10 @@ class ATM:
     def withdraw(self, value):
         result = dict()
         for note in sorted(self.notes, reverse=True):
-            if self.get_quantity(note) > 0:
-                while value >= note:
-                    result[note] = result.get(note, 0) + 1
-                    value -= note
-                    self.set_note(note, self.get_quantity(note) - 1)
+            while value >= note and self.get_quantity(note) > 0:
+                result[note] = result.get(note, 0) + 1
+                value -= note
+                self.set_note(note, self.get_quantity(note) - 1)
 
         return result
 
@@ -57,3 +56,14 @@ if __name__ == '__main__':
 
     print('Notas disponíveis:')
     print(atm.get_notes_string())
+
+    value_to_withdraw = input('\nInsira o valor desejado de saque: ')
+    value_to_withdraw = int(value_to_withdraw)
+
+    value = atm.withdraw(value_to_withdraw)
+    amount = 0
+    for key, qtd in value.items():
+        amount += key * qtd
+
+    print('\n' + str(amount))
+    print(value)
