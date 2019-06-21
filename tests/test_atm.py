@@ -60,3 +60,6 @@ class ATMTests(unittest.TestCase):
         atm = ATM({2: 3, 5: 1, 50: 5})
         self.assertEqual(atm.withdraw(202), {50: 4, 2: 1})
         self.assertEqual(atm.notes, {2: 2, 5: 1, 50: 1})
+
+        atm = ATM({2: 3})
+        self.assertEqual(atm.withdraw(10), {2: 3})
