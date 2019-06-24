@@ -44,6 +44,25 @@ class ATM:
         return result
 
 
+def spaces_size(length):
+    return get_spaces(
+        {
+            3: 0,
+            2: 1,
+            1: 2
+        }.get(length, 0)
+    )
+
+
+def get_spaces(size):
+    spaces = ''
+
+    for i in range(size):
+        spaces += ' '
+
+    return spaces
+
+
 if __name__ == '__main__':
     notes = dict()
     notes_list = [2, 5, 10, 20, 50, 100]
@@ -54,6 +73,7 @@ if __name__ == '__main__':
 
     atm = ATM(notes)
 
+    print('Valor total disponível: R$', atm.get_amount())
     print('Notas disponíveis:')
     print(atm.get_notes_string())
 
@@ -62,6 +82,7 @@ if __name__ == '__main__':
 
     value = atm.withdraw(value_to_withdraw)
 
-    print('\nNota - Quantidade')
+    print('\nNota | Quantidade')
     for note, qtd in value.items():
-        print(str(note) + ': ' + str(qtd))
+        note_length = len(str(note))
+        print(spaces_size(note_length), note, '|', qtd)
