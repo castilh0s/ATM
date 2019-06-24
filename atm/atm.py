@@ -61,9 +61,7 @@ if __name__ == '__main__':
     value_to_withdraw = int(value_to_withdraw)
 
     value = atm.withdraw(value_to_withdraw)
-    amount = 0
-    for key, qtd in value.items():
-        amount += key * qtd
 
-    print('\n' + str(amount))
-    print(value)
+    print('\nNota - Quantidade')
+    for note, qtd in value.items():
+        print(str(note) + ': ' + str(qtd))
